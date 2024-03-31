@@ -169,7 +169,7 @@ return {
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-  { import = 'custom.lspconfig' },
+  { import = 'my-lspconfig' },
 
   { -- Autoformat
     'stevearc/conform.nvim',

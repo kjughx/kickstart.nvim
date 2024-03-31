@@ -1,5 +1,5 @@
 -- This needs to be first
-require 'custom.opts'
+require 'opts'
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -22,11 +22,11 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup { { import = 'custom.plugins' } }
+require('lazy').setup { { import = 'plugins' } }
 
 -- Do this after loading plugins to override them
 --  Those that are loaded lazily needs more care
-require 'custom.mappings'
+require 'mappings'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
