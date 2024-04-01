@@ -7,7 +7,8 @@
 --
 --  To update plugins you can run
 --    :Lazy update
---
+---@diagnostic disable-next-line: undefined-global
+local vim = vim
 return {
   { -- git frontend in neovim
     'kjughx/neogit',
@@ -78,64 +79,6 @@ return {
       },
     },
     config = function()
-      require("telescope.pickers.layout_strategies").buffer_window = function(self)
-        local layout = require("telescope.pickers.window").get_initial_window_options(self)
-        local prompt = layout.prompt
-        local results = layout.results
-        local preview = layout.preview
-        local config = self.layout_config
-        local padding = self.window.border and 2 or 0
-        local width = vim.api.nvim_win_get_width(self.original_win_id)
-        local height = vim.api.nvim_win_get_height(self.original_win_id)
-        local pos = vim.api.nvim_win_get_position(self.original_win_id)
-        local wline = pos[1] + 1
-        local wcol = pos[2] + 1
-
-        -- Height
-        prompt.height = 1
-        preview.height = self.previewer and math.floor(height * 0.4) or 0
-        results.height = height
-            - padding
-            - (prompt.height + padding)
-            - (self.previewer and (preview.height + padding) or 0)
-
-        -- Line
-        local rows = {}
-        local mirror = config.mirror == true
-        local top_prompt = config.prompt_position == "top"
-        if mirror and top_prompt then
-          rows = { prompt, results, preview }
-        elseif mirror and not top_prompt then
-          rows = { results, prompt, preview }
-        elseif not mirror and top_prompt then
-          rows = { preview, prompt, results }
-        elseif not mirror and not top_prompt then
-          rows = { preview, results, prompt }
-        end
-        local next_line = 1 + padding / 2
-        for k, v in pairs(rows) do
-          if v.height ~= 0 then
-            v.line = next_line
-            next_line = v.line + padding + v.height
-          end
-        end
-
-        -- Width
-        prompt.width = width - padding
-        results.width = prompt.width
-        preview.width = prompt.width
-
-        -- Col
-        prompt.col = wcol + padding / 2
-        results.col = prompt.col
-        preview.col = prompt.col
-
-        if not self.previewer then
-          layout.preview = nil
-        end
-
-        return layout
-      end
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
       -- many different aspects of Neovim, your workspace, LSP, and more!
@@ -161,12 +104,11 @@ return {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        defaults = {
+        -- defaults = {
           --   mappings = {
           --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           --   },
-          layout_strategy = "buffer_window",
-        },
+        -- },
         -- pickers = {}
       }
 
@@ -287,12 +229,12 @@ return {
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       --
-      vim.g.gruvbox_material_background = 'hard'
+      vim.g.gruvbox_material_background = 'soft'
       vim.g.gruvbox_material_better_performance = 1
       vim.cmd.colorscheme 'gruvbox-material'
 
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
     end,
   },
 
