@@ -28,5 +28,3 @@ map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 --  See `:help wincmd` for a list of all window commands
 map('n', '<C-h>', '<C-w><C-h>', 'Move focus to the left window')
 map('n', '<C-l>', '<C-w><C-l>', 'Move focus to the right window')
--- map('n', '<C-j>', '<C-w><C-j>', 'Move focus to the lower window')
--- map('n', '<C-k>', '<C-w><C-k>', 'Move focus to the upper window')
