@@ -10,6 +10,9 @@ g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed
 g.have_nerd_font = false
 
+-- True color
+opt.termguicolors = true
+
 -- [[ Setting options ]]
 -- See `:help opt`
 -- NOTE: You can change these options as you wish!

@@ -16,15 +16,6 @@ map('v', '<C-k>', ":m '<-2<CR>gv=gv")
 map('n', '<leader>e', '<cmd>Lexplore<CR>', 'Open netrw')
 map('n', '<leader>h', '<cmd>nohlsearch<CR>', 'Clear highlighting')
 
--- TIP: Disable arrow keys in normal mode
-map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-map('n', '<C-h>', '<C-w><C-h>', 'Move focus to the left window')
-map('n', '<C-l>', '<C-w><C-l>', 'Move focus to the right window')
+map('n', ']b', '<cmd>bnext<CR>', 'Next buffer')
+map('n', '[b', '<cmd>bprevious<CR>', 'Previous buffer')
+map('n', '<leader>b', '<cmd>buffers<CR>', 'List open buffers')
