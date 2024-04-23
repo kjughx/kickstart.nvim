@@ -1,4 +1,5 @@
 local vim = vim
+
 -- This needs to be first
 require 'opts'
 require 'autocmds'
@@ -13,7 +14,11 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup { { import = 'plugins' } }
+require("lazy").setup("plugins", {
+  change_detection = {
+    notify = false,
+  },
+})
 
 -- Do this after loading plugins to override them
 --  Those that are loaded lazily needs more care
