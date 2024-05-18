@@ -84,7 +84,7 @@ opt.tabstop = 4
 opt.softtabstop = 4
 
 g.netrw_keppdir = 0
-g.netrw_winsize = 30
+g.netrw_winsize = 25
 g.netrw_banner = 0
 g.netrw_localcopydircmd = 'cp -r'
 

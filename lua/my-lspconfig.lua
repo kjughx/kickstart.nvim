@@ -7,6 +7,29 @@ return { -- LSP Configuration & Plugins
     -- Automatically install LSPs and related tools to stdpath for Neovim
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
+    { -- formatter plugin
+      "nvimdev/guard.nvim",
+      -- Builtin configuration, optional
+      dependencies = {
+        "nvimdev/guard-collection",
+      },
+      config = function()
+        local ft = require('guard.filetype')
+
+        -- Assuming you have guard-collection
+        ft('python'):fmt('ruff')
+
+        -- Call setup() LAST!
+        require('guard').setup({
+          -- Choose to format on every write to a buffer
+          fmt_on_save = true,
+          -- Use lsp if no formatter was defined for this filetype
+          lsp_as_default_formatter = true,
+          -- By default, Guard writes the buffer on every format
+          save_on_fmt = false,
+        })
+      end
+    },
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -72,6 +95,9 @@ return { -- LSP Configuration & Plugins
           vim.diagnostic.setloclist { border = 'rounded' }
         end, 'Open diagnostic Quickfix list')
 
+        --  Symbols are things like variables, functions, types, etc.
+        map('<leader>ls', vim.lsp.buf.document_symbol, 'Document Symbols')
+
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
         map('<leader>lr', vim.lsp.buf.rename, 'Rename')
@@ -79,10 +105,6 @@ return { -- LSP Configuration & Plugins
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
         map('<leader>la', vim.lsp.buf.code_action, 'Code Action')
-
-        map('<leader>lf', function()
-          vim.lsp.buf.format { async = true }
-        end, 'Code Format')
 
         -- Opens a popup that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap.
@@ -130,6 +152,7 @@ return { -- LSP Configuration & Plugins
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
       clangd = {},
+      fortls = {},
       rust_analyzer = {},
       python_lsp_server = {},
       lua_ls = {
