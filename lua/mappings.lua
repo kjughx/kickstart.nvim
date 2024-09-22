@@ -1,5 +1,5 @@
 local map = function(mode, keys, func, desc)
-  vim.keymap.set(mode, keys, func, { desc = desc or {} })
+  vim.keymap.set(mode, keys, func, { desc = desc or "" })
 end
 
 map('n', '<leader>w', '<cmd>w<CR>', 'Save buffer')

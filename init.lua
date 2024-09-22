@@ -1,6 +1,7 @@
 -- This needs to be first
 require 'opts'
 
+require 'commands'
 require 'autocmds'
 require 'lazyvim'
 

@@ -98,6 +98,8 @@ return { -- LSP Configuration & Plugins
         --  Symbols are things like variables, functions, types, etc.
         map('<leader>ls', vim.lsp.buf.document_symbol, 'Document Symbols')
 
+        map('<leader>lS', vim.lsp.buf.workspace_symbol, 'Workspace Symbols')
+
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
         map('<leader>lr', vim.lsp.buf.rename, 'Rename')
@@ -153,7 +155,13 @@ return { -- LSP Configuration & Plugins
     local servers = {
       clangd = {},
       fortls = {},
-      rust_analyzer = {},
+      rust_analyzer = {
+        ["rust-analyzer"] = {
+          check = {
+            allTargets = false
+          }
+        }
+      },
       python_lsp_server = {},
       lua_ls = {
         settings = {
@@ -162,7 +170,7 @@ return { -- LSP Configuration & Plugins
               callSnippet = 'Replace',
             },
             diagnostics = {
-              globals = {'vim'}
+              globals = { 'vim' }
             }
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             -- diagnostics = { disable = { 'missing-fields' } },

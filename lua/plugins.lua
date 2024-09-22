@@ -159,8 +159,11 @@ return {
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.g.gruvbox_material_background = 'soft'
-      vim.g.gruvbox_material_better_performance = 1
+      vim.g.gruvbox_material_current_word = "underline"
+      vim.g.gruvbox_material_diagnostic_text_highlight = true
+      vim.g.gruvbox_material_enable_bold = true
+      vim.g.gruvbox_material_better_performance = 2
+      vim.g.gruvbox_material_dim_inactive_windows = true
       vim.cmd.colorscheme 'gruvbox-material'
 
       vim.cmd.hi 'Normal ctermfg=223 ctermbg=none gui=none guifg=none guibg=none'
