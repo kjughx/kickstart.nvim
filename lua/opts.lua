@@ -88,6 +88,10 @@ g.netrw_winsize = 25
 g.netrw_banner = 0
 g.netrw_localcopydircmd = 'cp -r'
 
+-- By default split right
+opt.splitright = true
+opt.splitbelow = true
+
 -- maybe needed for C
 --[[ local notify = vim.notify
 vim.notify = function(msg, ...)
