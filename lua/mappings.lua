@@ -23,7 +23,7 @@ map('n', '<leader>h', '<cmd>nohlsearch<CR>', 'Clear highlighting')
 map('n', ']b', '<cmd>bnext<CR>', 'Next buffer')
 map('n', '[b', '<cmd>bprevious<CR>', 'Previous buffer')
 
-map('n', '<leader>bb', '<cmd>buffers<CR>', 'List open buffers')
+map('n', '<leader>bb', '<cmd>ClistBuffers<CR>', 'List open buffers')
 map('n', '<leader>bc', "<cmd>bdelete<CR>")
 
 map_expr('i', '<Tab>',   [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
