@@ -6,7 +6,6 @@ local map_expr = function(mode, keys, func, desc)
   vim.keymap.set(mode, keys, func, {expr = true})
 end
 
-
 map('n', '<leader>w', '<cmd>w<CR>', 'Save buffer')
 map('n', '<leader>q', '<cmd>q<CR>', 'Close buffer')
 
