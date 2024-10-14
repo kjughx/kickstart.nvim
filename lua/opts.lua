@@ -92,6 +92,10 @@ g.netrw_localcopydircmd = 'cp -r'
 opt.splitright = true
 opt.splitbelow = true
 
+-- Use ripgrep
+opt.grepprg = "rg --vimgrep --no-heading --smart-case"
+opt.grepformat = "%f:%l:%m"
+
 -- maybe needed for C
 --[[ local notify = vim.notify
 vim.notify = function(msg, ...)
