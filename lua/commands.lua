@@ -2,7 +2,10 @@ vim.api.nvim_create_user_command(
   'Grep',
   function(opts)
     vim.cmd('silent grep! ' .. opts.args)
-    vim.cmd('copen 22')
+    vim.cmd('copen')
+
+    -- Map 'q' to close the quickfix window
+    vim.api.nvim_buf_set_keymap(0, 'n', 'q', ':cclose<CR>', { noremap = true, silent = true })
   end,
   { nargs = '+' }
 )
@@ -15,10 +18,13 @@ vim.api.nvim_create_user_command("ClistBuffers", function()
 
     -- Prepare quickfix list items
     for _, buf in ipairs(buffers) do
-        local bufname = buf.name ~= '' and buf.name or '[No Name]'
+        local filename = string.match(buf.name, "/.*/(.*/.*/.+)$") or "[No Name]"
         local modified = buf.changed == 1 and "[+]" or ""
+        local snippet = vim.api.nvim_buf_get_lines(buf.bufnr, buf.lnum - 1, buf.lnum, false)
         table.insert(qflist, {
-            text = string.format("%s %s", bufname, modified),
+            bufnr = buf.bufnr,
+            module = filename .. modified,
+            text = string.format("%d: %s", buf.lnum, snippet[1]),
         })
     end
 
