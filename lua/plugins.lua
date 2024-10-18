@@ -106,4 +106,52 @@ return {
       require('nvim-treesitter.configs').setup(opts)
     end,
   },
+
+  {
+    'gelguy/wilder.nvim',
+    dependencies = {
+      'romgrk/fzy-lua-native'
+    },
+    config = function()
+      local wilder = require('wilder')
+      wilder.setup({modes = {':'}})
+
+      wilder.set_option('pipeline', {
+        wilder.branch(
+          wilder.python_file_finder_pipeline({
+            file_command = function(_, arg)
+              if string.find(arg, "%.") ~= nil then
+                return {'fd', '-tf', '-H'}
+              end
+              return {'fd', '-tf'}
+            end,
+            dir_command = {'fd', '-td'},
+          }),
+          wilder.cmdline_pipeline({
+            fuzzy = 2,
+            fuzzy_filter = wilder.lua_fzy_filter(),
+          }),
+          {
+            wilder.check(function(_, x) return x == '' end),
+            wilder.history(),
+          }
+        ),
+      })
+
+      local highlighters = {
+        wilder.pcre2_highlighter(),
+        wilder.lua_fzy_highlighter(),
+      }
+
+      local popupmenu_renderer = wilder.popupmenu_renderer(
+        wilder.popupmenu_border_theme({
+          highlighter = highlighters,
+        })
+      )
+
+      wilder.set_option('renderer', wilder.renderer_mux({
+        [':'] = popupmenu_renderer,
+      }))
+    end
+  }
 }
