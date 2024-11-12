@@ -80,6 +80,15 @@ return {
           style = 'sign',
           signs = { add = '+', change = '~', delete = '-' },
         },
+        mappings = {
+          apply = '<leader>gs',
+          reset = '<leader>gr',
+         goto_prev = "[c",
+          goto_next = "]c"
+        },
+        options = {
+         wrap_goto = true,
+        }
       })
 
       require 'mini.pairs'.setup({})
