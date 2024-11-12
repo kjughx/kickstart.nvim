@@ -68,6 +68,14 @@ return {
     end,
   },
 
+
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require 'colorizer'.setup(nil, { css = true, })
+    end
+  },
+
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
