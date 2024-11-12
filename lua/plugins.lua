@@ -7,8 +7,16 @@ return {
       'nvim-lua/plenary.nvim',
     },
     config = function()
-      require('neogit').setup { kind = 'split' }
-      vim.keymap.set('n', '<leader>gg', '<cmd> Neogit kind=tab<CR>', { desc = 'Open Neogit' })
+      require('neogit').setup {
+        kind = 'vsplit',
+        disable_context_highlighting = true,
+        commit_editor = { kind = "vsplit" },
+        commit_select_view = { kind = "vsplit" },
+        log_view = { kind = "tab" },
+        reflog_view = { kind = "tab" },
+        commit_commit = { verify_commit = false },
+      }
+      vim.keymap.set('n', '<leader>gg', '<cmd> Neogit<CR>', { desc = 'Open Neogit' })
     end,
   },
 
