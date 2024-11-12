@@ -3,7 +3,7 @@ local map = function(mode, keys, func, desc)
 end
 
 local map_expr = function(mode, keys, func, desc)
-  vim.keymap.set(mode, keys, func, {expr = true})
+  vim.keymap.set(mode, keys, func, { expr = true })
 end
 
 map('n', '<leader>w', '<cmd>w<CR>', 'Save buffer')
@@ -26,5 +26,5 @@ map('n', '[b', '<cmd>bprevious<CR>', 'Previous buffer')
 map('n', '<leader>bb', '<cmd>ClistBuffers<CR>', 'List open buffers')
 map('n', '<leader>bc', "<cmd>bdelete<CR>")
 
-map_expr('i', '<Tab>',   [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
+map_expr('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
 map_expr('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])

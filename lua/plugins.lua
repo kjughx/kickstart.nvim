@@ -26,12 +26,12 @@ return {
     dependecies = {
       "nvim-lua/plenary.nvim",
     },
-    config = function ()
-        vim.g.compile_mode = {}
+    config = function()
+      vim.g.compile_mode = {}
     end
   },
 
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-sleuth',   -- Detect tabstop and shiftwidth automatically
 
   {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
@@ -52,7 +52,6 @@ return {
 
   {
     'sainnhe/gruvbox-material',
-    --
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
@@ -63,6 +62,8 @@ return {
       vim.g.gruvbox_material_enable_bold = true
       vim.g.gruvbox_material_better_performance = 2
       vim.g.gruvbox_material_dim_inactive_windows = true
+      vim.g.gruvbox_material_transparent_background = true
+      vim.g.gruvbox_material_background = 'soft'
       vim.cmd.colorscheme 'gruvbox-material'
       vim.cmd.hi 'Normal ctermfg=223 ctermbg=none gui=none guifg=none guibg=none'
     end,
@@ -85,7 +86,7 @@ return {
         return '%2l:%-2v'
       end
       statusline.section_fileinfo = function() end
-      statusline.setup ({ use_icons = vim.g.have_nerd_font })
+      statusline.setup({ use_icons = vim.g.have_nerd_font })
 
       -- duh
       require 'mini.completion'.setup({})
@@ -99,11 +100,11 @@ return {
         mappings = {
           apply = '<leader>gs',
           reset = '<leader>gr',
-         goto_prev = "[c",
+          goto_prev = "[c",
           goto_next = "]c"
         },
         options = {
-         wrap_goto = true,
+          wrap_goto = true,
         }
       })
 
@@ -139,18 +140,18 @@ return {
     },
     config = function()
       local wilder = require('wilder')
-      wilder.setup({modes = {':'}})
+      wilder.setup({ modes = { ':' } })
 
       wilder.set_option('pipeline', {
         wilder.branch(
           wilder.python_file_finder_pipeline({
             file_command = function(_, arg)
               if string.find(arg, "%.") ~= nil then
-                return {'fd', '-tf', '-H'}
+                return { 'fdfind', '-tf', '-H' }
               end
-              return {'fd', '-tf'}
+              return { 'fdfind', '-tf' }
             end,
-            dir_command = {'fd', '-td'},
+            dir_command = { 'fdfind', '-td' },
           }),
           wilder.cmdline_pipeline({
             fuzzy = 2,
