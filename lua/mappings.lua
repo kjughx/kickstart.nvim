@@ -26,8 +26,5 @@ map('n', '[b', '<cmd>bprevious<CR>', 'Previous buffer')
 map('n', '<leader>bb', '<cmd>ClistBuffers<CR>', 'List open buffers')
 map('n', '<leader>bc', "<cmd>bdelete<CR>")
 
-map_expr('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
-map_expr('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
-
 map('n', 'n', [[n:lua require('go-up').centerScreen()<CR>]])
 map('n', 'N', [[N:lua require('go-up').centerScreen()<CR>]])

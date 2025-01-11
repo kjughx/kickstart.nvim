@@ -22,6 +22,29 @@ return {
   },
 
   {
+    'saghen/blink.cmp',
+    version = "*",
+    opts = {
+      keymap = {
+        preset = 'enter',
+        ['<Tab>'] = { 'select_next', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+      },
+      completion = {
+        list = {
+          selection = {
+            preselect = false,
+          }
+        },
+      },
+      sources = {
+        default = { 'lsp', 'path', 'buffer', },
+        cmdline = {},
+      },
+    },
+  },
+
+  {
     "ej-shafran/compile-mode.nvim",
     branch = "latest",
     dependecies = {
@@ -95,7 +118,7 @@ return {
       statusline.setup({ use_icons = vim.g.have_nerd_font })
 
       -- duh
-      require 'mini.completion'.setup({})
+      -- require 'mini.completion'.setup({})
 
       -- Show git diff in gutter
       require 'mini.diff'.setup({
@@ -114,7 +137,7 @@ return {
         }
       })
 
-      require 'mini.pairs'.setup({})
+      -- require 'mini.pairs'.setup({})
 
       require 'mini.comment'.setup({
         mappings = {
