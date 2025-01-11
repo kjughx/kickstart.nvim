@@ -31,6 +31,11 @@ return {
       vim.g.compile_mode = {}
     end
   },
+  {
+    'nullromo/go-up.nvim',
+    lazy = false,
+    opts = {},   -- specify options here
+  },
 
   'tpope/vim-sleuth',   -- Detect tabstop and shiftwidth automatically
 
