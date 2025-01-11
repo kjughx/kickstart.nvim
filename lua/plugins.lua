@@ -9,12 +9,8 @@ return {
     },
     config = function()
       require('neogit').setup {
-        kind = 'vsplit',
+        kind = 'tab',
         disable_context_highlighting = true,
-        commit_editor = { kind = "vsplit" },
-        commit_select_view = { kind = "vsplit" },
-        log_view = { kind = "tab" },
-        reflog_view = { kind = "tab" },
         commit_commit = { verify_commit = false },
       }
       vim.keymap.set('n', '<leader>gg', '<cmd> Neogit<CR>', { desc = 'Open Neogit' })
