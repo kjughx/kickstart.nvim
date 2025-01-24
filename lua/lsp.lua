@@ -6,7 +6,6 @@ return { -- LSP Configuration & Plugins
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
   },
 
   config = function()
@@ -69,20 +68,36 @@ return { -- LSP Configuration & Plugins
       end,
     })
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
     local servers = {
       clangd = {},
       fortls = {},
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
+            procMacro = {
+              enable = true,
+            },
+            diagnostics = {
+              enable = true,
+            },
             check = {
               allTargets = false
             }
           }
         }
       },
-      python_lsp_server = {},
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                ignore = { 'E501' },
+                maxLineLength = 200
+              }
+            }
+          }
+        }
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -92,22 +107,16 @@ return { -- LSP Configuration & Plugins
             diagnostics = {
               globals = { 'vim' }
             }
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
           },
         },
       },
     }
 
+    for name, server in pairs(servers) do
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      require('lspconfig')[name].setup({ settings = server.settings, capabilities = capabilities })
+    end
+
     require('mason').setup()
-    require('mason-lspconfig').setup {
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    }
   end,
 }
