@@ -57,7 +57,9 @@ return {
   {
     'nullromo/go-up.nvim',
     lazy = false,
-    opts = {},   -- specify options here
+    opts = {
+      respectScrolloff = true,
+    }, -- specify options here
   },
 
   'tpope/vim-sleuth',   -- Detect tabstop and shiftwidth automatically
