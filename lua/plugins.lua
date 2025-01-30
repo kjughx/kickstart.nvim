@@ -136,6 +136,8 @@ return {
           wrap_goto = true,
         }
       })
+      require "mini.ai".setup({})
+      require "mini.operators".setup({})
 
       -- require 'mini.pairs'.setup({})
 

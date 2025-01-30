@@ -19,7 +19,7 @@ return { -- LSP Configuration & Plugins
         -- Jump to the definition of the word under your cursor.
         map('gd', vim.lsp.buf.definition, 'Goto Definition')
         -- Find references for the word under your cursor.
-        map('gr', vim.lsp.buf.references, 'Goto References')
+        map('<leader>lr', vim.lsp.buf.references, 'Goto References')
         -- Jump to the implementation of the word under your cursor.
         map('gI', vim.lsp.buf.implementation, 'Goto Implementation')
         -- Diagnostic keymaps
@@ -35,7 +35,7 @@ return { -- LSP Configuration & Plugins
         end, 'Open diagnostic Quickfix list')
 
         -- Rename the variable under your cursor.
-        map('<leader>lr', vim.lsp.buf.rename, 'Rename')
+        map('<leader>lR', vim.lsp.buf.rename, 'Rename')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
