@@ -28,3 +28,15 @@ map('n', '<leader>bc', "<cmd>bdelete<CR>")
 
 map('n', 'n', [[n:lua require('go-up').centerScreen()<CR>]])
 map('n', 'N', [[N:lua require('go-up').centerScreen()<CR>]])
+
+function PasteSelectionToCmd()
+  local selected_text = vim.fn.getreg('a')
+  vim.cmd('call feedkeys(":' .. selected_text .. '\\<Left>\\<C-b> \\<Left>", "n")')
+end
+
+vim.api.nvim_set_keymap(
+  'x',
+  ';',
+  '"ay:<C-u>lua PasteSelectionToCmd()<CR>',
+  { noremap = true, silent = true }
+)
