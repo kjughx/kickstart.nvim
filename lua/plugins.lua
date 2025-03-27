@@ -36,10 +36,9 @@ return {
           }
         },
       },
-      sources = {
-        default = { 'lsp', 'path', 'buffer', },
-        cmdline = {},
-      },
+      cmdline = {
+        sources = { 'lsp', 'path', 'buffer', },
+      }
     },
   },
 
