@@ -44,13 +44,15 @@ return {
   },
 
   {
-    "ej-shafran/compile-mode.nvim",
-    branch = "latest",
+    "kjughx/compile-mode.nvim",
+    branch = "main",
     dependecies = {
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      vim.g.compile_mode = {}
+      vim.g.compile_mode = {
+        recompile_no_fail = true,
+      }
     end
   },
   {
